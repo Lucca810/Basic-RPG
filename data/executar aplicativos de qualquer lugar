@@ -1,0 +1,9 @@
+Tutorial de como executar um exe de qualque lugar do windows, usando a variável path, assim como o node, nodemon, calc e outros - exemplo usado é o mongodb
+
+1-Abrir painel de controle
+2-Sistema e segurança
+3- Sistema
+4- Configurações avançadas de Sistema
+5- Na aba avnçado, clicar em variáveis de ambiente
+6- se tiver a variável path ok, se n criar ela
+7- adicionar o caminho à variável path, bem moleza

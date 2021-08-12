@@ -1,0 +1,45 @@
+show dbs; mostra todas as databases
+use nomedatabase; se não existir ela cria e só cria msm se vc criar um tabela nela
+db.dopDatabase(); dropa a database atual
+db.createCollection("nomeDaTabela"); tabelas são chamadas de collections, e esse comando cria uma tabela
+db.nomeCollection.drop(); remove a collection desejada
+db.nomeCollection.findOne(); é como se fosse um select * from where id = 1
+db.nomeCollection.find(); é como se fosse um select * from
+db.nomeCollection.find().pretty(); é como se fosse um select * from mas exibindo as paradas bunitinhu
+db.nomeCollection.find({campo: {operação: parâmetro}}).pretty(); é um find com where, onde a operação usa um dos operadores e o parâmetro é o que deve ser comparado
+db.nomeCollection.find({campo: {operação: parâmetro},{campo: {operação: parâmetro},quantas vezes quiser}).pretty(); Assim você faria um select com um 'AND', cruzando vários parâmetros
+db.nomeCollection.find($or: [{campo: {operação: parâmetro},{campo: {operação: parâmetro},quantas vezes quiser}}]).pretty(); Assim você faria um select com um 'or', buscando por vários parâmetros
+
+db.nomeCollection.update({campoASerProcurado: parâmetro},{$set: {campo: parâmetro,campo: parâmetro, quantas vezes quiser}},{multi: false ou true}); o multi false excuta a atualização só no primeiro doc que atender a consição
+Exemplo: db.alunos.update({nome: "João"},{$set: {nome: "José",idade: 32}}); o multi caso omitido será false, ou seja, executará apenas na 1 consulta
+
+db.nomeCollection.remove({campoASerProcurado: parâmetro}, true ou false); exclui um campo, o true exclui apenas o primeirodocumento encontrado, no caso falso ou omitido exclui tudo
+Exemplo: db.alunos.remove({nome: "Maria"}); var remover todas as marias do banco
+Exemplo: db.alunos.remove({nome: "João",idade: 32}); var remover todos os Joãos de 32 anos
+Exemplo: db.alunos.remove($or[{nome: "Fernanda"},{idade: 32}]); var remover todas as Fernandas e todos os usuários de 32 anos
+Exemplo: db.alunos.remove({idade:{$gt:30}}); var remover todos os usuários acima de 30 anos
+
+
+No mongodb não é necessario criar tabelas com prédefinições de campos e suas estruturas, possibilitando que você crie atributos e valores dependendo do registro, mas ele é sempre relacionado a um id
+
+possiveis extruturas com mongodb (1 cadastro de exemplo)
+db.nomeCollection.save{
+    id_pessoa: 1,
+    nome: 'Ronaldo',
+    telefones: [
+        {telefone: 11940341541},{telefone: 11940336331}
+    ],
+    Emails: [
+        {email: 'luccaduartebatista@outlook.com', tipo: 'Comum'},{email: 'luccaduartebatista@gmail.com',tipo: 'Trabalho'}
+    ]
+} o Save insere registros na Collection desejada e também pode fazer uma subistituição/update no banco apagando o registro do ID, ou a chave _id:
+
+operadores:
+$eq - =
+$gt - >
+$gte - =>
+$lt - <
+$lte - <=
+$ne - !=
+
+caso execute o comando mongod --rest ao inicializar o server, você pode acessar uma página no browser para manejar os seus bd, como o mySql no xampp
